@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2 Person Chat</title>
+    <style>
+        /* Add your CSS styles here */
+    </style>
+</head>
+<body>
+
+    <div id="chat-box"></div>
+    <input type="text" id="message-input" placeholder="Type a message..." />
+    <button id="send-btn">Send</button>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io(); // Connect to the WebSocket server
+
+        // Send message
+        document.getElementById('send-btn').addEventListener('click', function() {
+            const messageText = document.getElementById('message-input').value;
+            socket.emit('chat message', messageText);  // Emit message to server
+            document.getElementById('message-input').value = '';
+        });
+
+        // Listen for messages from the server
+        socket.on('chat message', function(msg) {
+            const messageElement = document.createElement('div');
+            messageElement.textContent = msg;
+            document.getElementById('chat-box').appendChild(messageElement);
+        });
+    </script>
+
+</body>
+</html>
