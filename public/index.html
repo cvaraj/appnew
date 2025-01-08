@@ -14,11 +14,11 @@
     <input type="text" id="message-input" placeholder="Type a message..." />
     <button id="send-btn">Send</button>
 
-    <script src="/socket.io/socket.io.js"></script>
+    <script src="/api/chat.js/socket.io/socket.io.js"></script>
     <script>
-        const socket = io(); // Connect to the WebSocket server
+        const socket = io();  // Automatically connects to the server
 
-        // Send message
+// Send message
         document.getElementById('send-btn').addEventListener('click', function() {
             const messageText = document.getElementById('message-input').value;
             socket.emit('chat message', messageText);  // Emit message to server
