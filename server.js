@@ -45,8 +45,3 @@ io.on('connection', (socket) => {
         io.emit('chat message', `User ${socket.id} has left the chat`);
     });
 });
-
-// Start the server on port 3000
-server.listen(3001, () => {
-    console.log('Server is running on http://localhost:3001');
-});
